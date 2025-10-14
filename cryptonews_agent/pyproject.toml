@@ -1,0 +1,65 @@
+[build-system]
+requires = ["setuptools>=67", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cryptonews-agent"
+version = "0.1.0"
+description = "Offline-first crypto news ingestion and analysis pipeline"
+requires-python = ">=3.11"
+readme = "README.md"
+authors = [{name = "CryptoNews Agent"}]
+dependencies = [
+    "typer[all]>=0.9",
+    "pydantic>=2.5",
+    "pydantic-settings>=2.0",
+    "sqlalchemy>=2.0",
+    "alembic>=1.12",
+    "psycopg[binary]>=3.1",
+    "asyncpg>=0.29",
+    "apscheduler>=3.10",
+    "langdetect>=1.0.9",
+    "openai>=1.12",
+    "httpx>=0.25",
+    "tenacity>=8.2",
+    "pgvector>=0.2",
+    "telethon>=1.30",
+    "tweepy>=4.14",
+    "praw>=7.7",
+    "Mastodon.py>=1.8",
+    "python-dateutil>=2.8",
+    "orjson>=3.9",
+    "python-json-logger>=2.0",
+    "rich>=13.7",
+    "sentence-transformers>=2.3",
+    "numpy>=1.26"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4",
+    "pytest-asyncio>=0.21",
+    "pytest-cov>=4.1",
+    "mypy>=1.7",
+    "ruff>=0.1",
+    "types-python-dateutil",
+    "types-requests",
+    "types-setuptools"
+]
+
+[project.scripts]
+cryptonews-agent = "src.app:app"
+
+[tool.ruff]
+line-length = 100
+select = ["E", "F", "B", "I", "UP", "N", "S"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.11"
+packages = ["src"]
+plugins = []
+strict = false
+
+[tool.pytest.ini_options]
+addopts = "-ra"
